@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "chroma-js": "^2.1.2",
     "easing-js": "git://github.com/danro/easing-js.git",
     "gl-matrix": "^3.3.0",
     "glsl-easings": "^1.0.0",

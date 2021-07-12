@@ -1,7 +1,7 @@
 export default class ConsoleSignature {
   constructor() {
-    this.message = `created by yoichi kobayashi`;
-    this.url = `https://www.tplh.net/`;
+    this.message = `created by h4ck3rm1k2`;
+    this.url = `https://www.anchor.fm/stre/`;
     this.show();
   }
   show() {
