@@ -23,4 +23,5 @@ RUN npm install
 COPY src src
 COPY gulpfile.js .
 COPY gulp gulp
+RUN npm install -g gulp-cli
 RUN npm run build
