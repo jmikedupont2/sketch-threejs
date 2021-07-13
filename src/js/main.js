@@ -19,7 +19,6 @@ if (pageId == 'index') {
 
   switch (pageId) {
 
-  case 'splash':       require('./sketch/splash/init.js').default(); break;
   case 'math1':       require('./sketch/math1/init.js').default(); break;
     default:
   }

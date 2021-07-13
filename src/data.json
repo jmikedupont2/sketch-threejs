@@ -5,13 +5,6 @@
     "keywords": "Stream Of Random, WebGL, three.js"
   },
   "pages": {
-    "index": {
-      "title": "",
-      "id": "index",
-      "description": "interactive sketches made with three.js. taken from y. kobayashi. hacked by h4ckerm1k3",
-      "path": "/",
-      "color": "white"
-    },
     "math1": {
       "title": "math1",
       "id": "math1",

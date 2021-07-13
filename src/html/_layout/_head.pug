@@ -1,13 +1,21 @@
-- 
-  var titleMerge = (page.title != '') ? page.title + ' │ ' + data.meta.websiteName : data.meta.websiteName;
-  var keywordsMerge = (page.keywords != '') ? page.keywords + ', ' + data.meta.keywords : metaKeywordsBase;
+-
+
+  var titleMerge = page ? ((page.title != '') ? page.title + ' │ ' + data.meta.websiteName : data.meta.websiteName ) : "missing";
+  var keywordsMerge = page ? ((page.keywords != '') ? page.keywords + ', ' + data.meta.keywords : metaKeywordsBase) : "missing";
+  var pageTescription = page ? page.description : "missing";
+  var pageId = page ? page.id : "missing";
+  var pageTitle = page ? page.title : "missing";
+  var pageColor = page ? page.color : "missing";
+  var pageupdate = page ? page.update : false;
+  var pageDescription= = page ? page.description : "missing";
+
   var themeColor = '#111111';
 
 meta(charset="utf-8")
 meta(http-equiv="X-UA-Compatible", content="IE=edge")
 title #{titleMerge}
 meta(name="viewport", content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1")
-meta(name="description", content=page.description)
+meta(name="description", content=pageDescription)
 meta(name="keywords", content=keywordsMerge)
 meta(name="theme-color", content=themeColor)
 meta(name="msapplication-TileImage", content="/sketch-threejs/img/common/ms_tileimage.png")
@@ -19,10 +27,10 @@ link(rel="stylesheet" href="/sketch-threejs/css/main.css")
 meta(property="og:title", content=titleMerge)
 meta(property="og:site_name", content=data.meta.website_name)
 meta(property="og:type", content="website")
-meta(property="og:description", content=page.description)
-meta(property="og:url", content=data.meta.domain + page.path)
+meta(property="og:description", content=pageDescription)
+meta(property="og:url", content=data.meta.domain + pagePath)
 meta(
   property="og:image",
-  content = `${data.meta.domain}/img/common/ogp_${(page.title == "") ? 'common' : page.id}.jpg`
+  content = `${data.meta.domain}/img/common/ogp_${(pageTitle == "") ? 'common' : pageId}.jpg`
 )
 

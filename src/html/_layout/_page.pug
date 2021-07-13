@@ -9,18 +9,18 @@ html(lang="ja")
     include ../_layout/_head.pug
   body
     .l-page(
-      class = (page.color == "white") ? 'l-page--white' : 'l-page--black',
-      data-id = page.id
+      class = (pageColor == "white") ? 'l-page--white' : 'l-page--black',
+      data-id = pageId
     )
       block content
-      - if (page.id !== 'index')
+      - if (pageId !== 'index')
         .p-utility-menu
           a.c-button(
             href = "/sketch-threejs/",
-            class = (page.color == "white") ? 'c-button--white' : 'c-button--black',
+            class = (pageColor == "white") ? 'c-button--white' : 'c-button--black',
             )
             span.c-button__icon.c-button__icon--back(
-              class = (page.color == "white") ? 'c-button__icon--white' : 'c-button__icon--black'
+              class = (pageColor == "white") ? 'c-button__icon--white' : 'c-button__icon--black'
               )
             span.c-button__label
               +splitStr('back', 'js-split-str')

@@ -1,5 +1,5 @@
 const THREE = require('three');
-const Force3 = require('./Force3').default;
+const Force3 = require('./force3').default;
 
 export default class ForcePerspectiveCamera extends THREE.PerspectiveCamera {
   constructor(fov, aspect, near, far) {

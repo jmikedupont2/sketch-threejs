@@ -2,7 +2,9 @@ import * as THREE from 'three';
 import Camera from './Camera';
 
 let renderer;
+let ticker;
 const scene = new THREE.Scene();
+const size  = 30;
 const camera = new Camera();
 const clock = new THREE.Clock({
   autoStart: false
@@ -26,65 +28,12 @@ export function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// export function myTexture(canvas ){
-//     const gl = canvas.getContext("webgl");
-//     const asize = 10;    
-//     var texture = new THREE.Texture( {
-// 	width: asize,
-// 	height:asize
-//     }  );
-
-//     texture.needsUpdate = false; // this iscorrect
-//     texture.__webglTexture = gl.createTexture();
-//     gl.bindTexture( gl.TEXTURE_2D, texture.__webglTexture );
-
-    
-//     var data = [];
-
-    
-//     for (var i =0; i < asize; i++) {
-// 	for (var j = 0; j < asize; j++) {
-// 	    //data.push(getRandomInt(0, 120) / 360, 0.8, 1);
-// 	    //data.push((i*j*100) % 256 );
-// 	    data.push(256);	    
-//     }}
-    
-//     var pixel = new Uint8Array(data);
-//     //gl.texImage2D(target,        level, internalformat, width, height, border, format,   type,             ArrayBufferView srcData);
-//     gl.texImage2D  (gl.TEXTURE_2D, 0,     gl.RGB,        asize, asize  ,      0,     gl.RGB,  gl.UNSIGNED_BYTE, pixel);
-
-//     gl.bindTexture( gl.TEXTURE_2D, null );
-
-//     return texture;
-// }
-
-// export function generateDataTexture ( width, height ) {
-
-//     var size = width * height;
-//     var data = new Uint8Array( 3 * size );
-//     for ( var i = 0; i < size; i ++ ) {
-// 	var color = selectColor(i) ;
-// 	data[ i * 3 ]    = (color.r );
-// 	data[ i * 3 + 1 ] = (color.g );
-// 	data[ i * 3 + 2 ] = (color.b );
-//     }
-
-//     var texture = new THREE.DataTexture( data, width, height, THREE.RGBFormat );
-//     texture.needsUpdate = true;
-
-//     return texture;
-
-// }
 
 export function createPoints( canvas ) {
-    // var tex = myTexture( canvas );
-    //var tex = generateDataTexture(30, 30);
-    
     var geometry = new THREE.BufferGeometry();
     var vertices_base = [];
     var colors_base = [];
     var masses_base = [];
-    var size  = 30;
     var half = Math.floor(size/2);
     var scale = 1.6666;
     
@@ -115,9 +64,6 @@ export function createPoints( canvas ) {
     return new THREE.Points(geometry, material);
 }
 
-// ==========
-// Define WebGLContent Class.
-//
 export default class WebGLContent {
   constructor() {
   }
@@ -142,7 +88,8 @@ export default class WebGLContent {
       camera.start();
   }
   play() {
-    clock.start();
+      clock.start();
+      ticker = 1;
     this.update();
   }
   pause() {
@@ -150,22 +97,33 @@ export default class WebGLContent {
   }
   update() {
     // When the clock is stopped, it stops the all rendering too.
-    if (clock.running === false) return;
+      if (clock.running === false) return;
 
-    // Calculate msec for this frame.
-    const time = clock.getDelta();
+      const time = clock.getDelta();
+      ticker = ticker + 1;
+      
+      camera.update(time);
 
-    // Update Camera.
-    camera.update(time);
-
-    // Update each objects.
-      //points.update(time);
       points.rotation.x += 0.01;
       points.rotation.y += 0.01;
-      points.rotation.z += 0.01;  
-
-    // Render the 3D scene.
-    renderer.render(scene, camera);
+      points.rotation.z += 0.01;
+      const colorb = points.geometry.attributes.color;
+      
+      const colorsa = colorb.array;
+      var idx = 0;
+      for (var i = 0; i < colorsa.length; i++) {
+	  //var c = selectColor(i+ ticker);
+	  var v = colorsa[ i ] + 0.001;
+	  if (v > 1) {
+	      v = 0;
+	  }
+	  colorsa[ i ] = v;
+      }
+      //points.updateMatrix();
+      colorb.needsUpdate= true;
+      
+      
+      renderer.render(scene, camera);
   }
   resize(resolution) {
     camera.resize(resolution);
