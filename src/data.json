@@ -4,15 +4,22 @@
     "websiteName": "sketch of three.js",
     "keywords": "Stream Of Random, WebGL, three.js"
   },
-  "pages": {
-    "math1": {
-      "title": "math1",
-      "id": "math1",
-      "description": "Math experiment 1.",
-      "path": "/sketch/math1.html",
-      "posted": "2021.7.12",
-      "update": "",
-      "color": "white"
+    "pages": {
+	"index": {
+	    "title": "",
+	    "id": "index",
+	    "description": "interactive sketches made with three.js. created by yoichi kobayashi, hacked by h4ckerm1k3.",
+	    "path": "/",
+	    "color": "white"
+	},
+	"math1": {
+	    "title": "math1",
+	    "id": "math1",
+	    "description": "Math experiment 1.",
+	    "path": "/sketch/math1.html",
+	    "posted": "2021.7.12",
+	    "update": "",
+	    "color": "white"
+	}
     }
-  }
 }
