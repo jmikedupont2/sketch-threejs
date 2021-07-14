@@ -20,6 +20,15 @@
 	    "posted": "2021.7.12",
 	    "update": "",
 	    "color": "white"
+	},
+	"math2": {
+	    "title": "math2",
+	    "id": "math2",
+	    "description": "Math experiment 2.",
+	    "path": "/sketch/math2.html",
+	    "posted": "2021.14.12",
+	    "update": "",
+	    "color": "white"
 	}
     }
 }

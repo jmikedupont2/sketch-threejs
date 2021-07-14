@@ -11,30 +11,34 @@ const reload = (done) => {
 
 gulp.task('watch', () => {
   gulp.watch(
-    [
-      `./${DIR.SRC}/**/*.{scss,sass}`
-    ],
-    gulp.series('sass', reload)
+      [
+	  `./${DIR.SRC}/**/*.{scss,sass}`
+      ],
+      {usePolling: true},
+      gulp.series('sass', reload)
   );
 
   gulp.watch(
     [
       `./${DIR.SRC}/**/*.pug`
     ],
+      {usePolling: true},
     gulp.series(reload)
   );
 
   gulp.watch(
-    [
-      `./${DIR.SRC}/**/*.{js,vs,fs,glsl}`,
-    ],
-    gulp.series('scripts', reload)
+      [
+	  `./${DIR.SRC}/**/*.{js,vs,fs,glsl}`,
+      ],
+      {usePolling: true},
+      gulp.series('scripts', reload)
   );
 
   gulp.watch(
-    [
-      `./${DIR.SRC}/{img,model,json}/**/*.*`,
-    ],
+      [
+	  `./${DIR.SRC}/{img,model,json}/**/*.*`,
+      ],
+      { usePolling: true},
     gulp.series('copyToDest', reload)
   );
 });
